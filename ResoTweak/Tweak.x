@@ -67,7 +67,18 @@ static CGSize targetFor(CGSize ref) {
 
         NSDictionary *p = [NSDictionary dictionaryWithContentsOfFile:PREFS_PATH] ?: @{};
         if (![p[@"enabled"] boolValue]) return;
-        if (![(NSArray *)p[@"apps"] containsObject:bid]) return;   // per-app opt-in
+        // Per-app opt-in: AltList picker, comma-separated text field, or legacy "apps" array.
+        BOOL allowed = [p[[@"app-" stringByAppendingString:bid]] boolValue];
+        id arr = p[@"apps"];
+        if (!allowed && [arr isKindOfClass:[NSArray class]]) allowed = [arr containsObject:bid];
+        id csv = p[@"bundleIDs"];
+        if (!allowed && [csv isKindOfClass:[NSString class]]) {
+            NSCharacterSet *seps = [NSCharacterSet characterSetWithCharactersInString:@", \n;"];
+            for (NSString *part in [(NSString *)csv componentsSeparatedByCharactersInSet:seps]) {
+                if ([part isEqualToString:bid]) { allowed = YES; break; }
+            }
+        }
+        if (!allowed) return;
 
         CGFloat w = [p[@"width"] doubleValue], h = [p[@"height"] doubleValue];
         if (w < 240 || h < 240 || w > 8192 || h > 8192) return;    // invalid -> do nothing
