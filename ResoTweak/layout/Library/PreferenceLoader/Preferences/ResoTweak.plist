@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0"><dict>
+ <key>entry</key><dict>
+  <key>label</key><string>ResoTweak</string>
+  <key>cell</key><string>PSLinkCell</string>
+  <key>isController</key><false/>
+ </dict>
+ <key>items</key><array>
+  <dict><key>cell</key><string>PSGroupCell</string><key>label</key><string>Resolution</string></dict>
+  <dict><key>cell</key><string>PSSwitchCell</string><key>label</key><string>Enabled</string>
+   <key>key</key><string>enabled</string><key>default</key><false/>
+   <key>defaults</key><string>com.example.resotweak</string></dict>
+  <dict><key>cell</key><string>PSSliderCell</string><key>key</key><string>scale</string>
+   <key>default</key><real>0.75</real><key>min</key><real>0.3</real><key>max</key><real>1.0</real>
+   <key>showValue</key><true/><key>defaults</key><string>com.example.resotweak</string></dict>
+ </array>
+ <key>title</key><string>ResoTweak</string>
+</dict></plist>

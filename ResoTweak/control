@@ -1,0 +1,9 @@
+Package: com.example.resotweak
+Name: ResoTweak
+Version: 1.0.0
+Architecture: iphoneos-arm
+Description: Change the render resolution of games (Metal/OpenGL ES).
+Maintainer: you
+Author: you
+Section: Tweaks
+Depends: mobilesubstrate, preferenceloader
